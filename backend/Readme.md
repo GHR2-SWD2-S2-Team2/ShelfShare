@@ -34,8 +34,8 @@ Ensure you have the following installed:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/alshlqany/ShelfShare-api.git
-   cd ShelfShare-api
+   git clone https://github.com/GHR2-SWD2-S2-Team2/ShelfShare.git
+   cd ./ShelfShare/backend
    ```
 2. Install dependencies:
    ```sh
