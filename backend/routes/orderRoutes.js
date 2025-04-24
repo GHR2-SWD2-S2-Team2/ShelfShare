@@ -1,20 +1,14 @@
-const express = require("express");
-const { protect } = require("../controllers/authController");
-const {
-  createOrder,
-  getUserOrders,
-  orderCompleted,
-  cancelOrder,
-  createCheckOut,
-  verifyPayment,
-} = require("../controllers/orderController");
-const router = express.Router();
+import express from "express";
+import {
+  createStripeSession,
+  getAllOrders,
+  getOrderById,
+} from "../controllers/orderController.js";
+import { protect } from "../middlewares/authMiddleware.js";
 
-router.post("/new", protect, createOrder);
-router.post("/stripe", protect, createCheckOut);
-router.get("/verify-payment", verifyPayment);
-router.get("/", protect, getUserOrders);
-router.patch("/cancel/:orderId", protect, cancelOrder);
-router.patch("/complete/:orderId", protect, orderCompleted);
+const orderRoutes = express.Router();
 
-module.exports = router;
+orderRoutes.post("/checkout", protect, createStripeSession);
+orderRoutes.get("/", protect, getAllOrders);
+orderRoutes.get("/:orderId", protect, getOrderById);
+export default orderRoutes;

@@ -1,21 +1,28 @@
-const express = require("express");
-const {
+import express from "express";
+import {
+  getAllBooks,
   addBook,
-  getUserBooks,
-  getBooks,
-  editBook,
+  updateBook,
   deleteBook,
-  getBook,
-} = require("../controllers/bookController");
-const { protect } = require("../controllers/authController");
+  addReview,
+  getBookById,
+} from "../controllers/bookController.js";
+import { adminOnly, protect } from "../middlewares/authMiddleware.js";
+import upload from "../middlewares/upload.js";
 
-const router = express.Router();
+const bookRouter = express.Router();
 
-router.get("/", protect, getBooks);
-router.get("/myBooks", protect, getUserBooks);
-router.post("/add", protect, addBook);
-router.get("/:bookId", protect, getBook);
-router.patch("/:bookId", protect, editBook);
-router.delete("/:bookId", protect, deleteBook);
+bookRouter.get("/", getAllBooks);
+bookRouter.get("/:bookId", getBookById);
+bookRouter.post("/", protect, adminOnly, upload.single("image"), addBook);
+bookRouter.patch(
+  "/:id",
+  protect,
+  adminOnly,
+  upload.single("image"),
+  updateBook
+);
+bookRouter.delete("/:id", protect, adminOnly, deleteBook);
+bookRouter.post("/review/:bookId", protect, addReview);
 
-module.exports = router;
+export default bookRouter;

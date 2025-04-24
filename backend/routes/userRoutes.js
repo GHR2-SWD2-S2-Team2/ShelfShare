@@ -1,12 +1,17 @@
-const express = require("express");
-const {
-  updateUserProfile,
-  getUserInfo,
-} = require("../controllers/userController");
-const { protect } = require("../controllers/authController");
-const User = require("../models/User");
-const router = express.Router();
+import express from "express";
+import {
+  getMe,
+  editProfile,
+  getAllUsers,
+  changeUserRole,
+} from "../controllers/userControllers.js";
+import { protect, adminOnly } from "../middlewares/authMiddleware.js";
 
-router.get("/me", protect, getUserInfo);
-router.patch("/", protect, updateUserProfile);
-module.exports = router;
+const userRoutes = express.Router();
+
+userRoutes.get("/me", protect, getMe);
+userRoutes.put("/", protect, editProfile);
+userRoutes.get("/", protect, adminOnly, getAllUsers);
+userRoutes.put("/role/:userId", protect, adminOnly, changeUserRole);
+
+export default userRoutes;

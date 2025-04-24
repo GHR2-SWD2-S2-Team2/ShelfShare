@@ -1,30 +1,32 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const BookSchema = new mongoose.Schema(
+const bookSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
-    author: { type: String, required: true },
-    ISBN: { type: String, required: true },
-    description: { type: String },
-    publisher: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    coverImage: { type: String, required: true },
-    price: { type: Number, required: true },
-    status: {
+    title: { type: String, required: true, unique: true },
+    description: { type: String, required: true },
+    mainCategory: {
       type: String,
-      enum: ["waiting", "ready", "rejected", "ordered", "sold"],
-      default: "waiting",
+      required: true,
+      enum: ["English", "Arabic", "Kids-Arabic", "Kids-English"],
     },
-    inCart: {
-      type: Boolean,
-      default: false,
-    },
+    subCategory: { type: String, required: true },
+    image: { type: String, required: true },
+    price: { type: Number, required: true, min: 1 },
+    ISBN: { type: String, required: true, unique: true },
+    author: { type: String, required: true },
+    qty: { type: Number, required: true, min: 0 },
+    favorites: { type: Number, default: 0, min: 0 },
+    soldTimes: { type: Number, default: 0, min: 0 },
+    reviews: [
+      {
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        rate: { type: Number, required: true, min: 1, max: 5 },
+      },
+    ],
+    rate: { type: Number, default: 0, min: 0, max: 5 },
   },
   { timestamps: true }
 );
 
-BookSchema.index({ publisher: 1, title: 1 }, { unique: true });
-module.exports = mongoose.model("Book", BookSchema);
+bookSchema.index({ title: "text", description: "text" });
+export default mongoose.model("Book", bookSchema);

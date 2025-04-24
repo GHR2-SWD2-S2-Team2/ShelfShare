@@ -1,44 +1,27 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const OrderSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     books: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Book",
-        required: true,
+        book: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Book",
+          required: true,
+        },
+        qty: { type: Number, required: true },
       },
     ],
-    totalPrice: {
-      type: Number,
-      required: true,
-    },
-    status: {
+    totalAmount: { type: Number, required: true },
+    paymentStatus: {
       type: String,
-      enum: ["pending", "completed", "canceled"],
+      enum: ["pending", "paid", "failed"],
       default: "pending",
     },
-    paymentMethod: {
-      type: String,
-      enum: ["card", "on_delivery", "balance"],
-    },
-    billingData: {
-      name: { type: String, required: true },
-      email: { type: String, required: true },
-      phone_number: { type: String, required: true },
-      address: { type: String, required: true },
-    },
-    paid: {
-      type: Boolean,
-      default: false,
-    },
+    stripeSessionId: { type: String },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Order", OrderSchema);
+export default mongoose.model("Order", orderSchema);
