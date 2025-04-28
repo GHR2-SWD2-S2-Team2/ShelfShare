@@ -6,6 +6,8 @@ import Layout from './components/Layout/Layout'
 import Register from './components/Register/Register'
 import Profile from './components/Profile/Profile'
 import NotFound from './components/NotFound/NotFound'
+import VerfiyOtp from './components/VerfiyOTP/VerfiyOTP'
+import ResendOtp from './components/ResendOTP/ResendOTP'
 
 function App() {
   
@@ -13,12 +15,15 @@ function App() {
   let routers = createBrowserRouter([
     {path:'' , element:<Layout/> , children:[
       {index:true , element:<Home/>},
-      {path:'login', element:<Login/>},
-      {path:'register', element:<Register/>},
       {path:'profile', element:<Profile/>},
       {path:'*', element:<NotFound/>}
 
     ]}
+    ,{path:'login', element:<Login/>},
+    {path:'register', element:<Register/>},
+    {path:'verifyOtp', element:<VerfiyOtp/>},
+    {path:'resendotp', element:<ResendOtp/>},
+
   ])
     
   return <>
