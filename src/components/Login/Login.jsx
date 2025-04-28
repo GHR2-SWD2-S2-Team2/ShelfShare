@@ -1,14 +1,15 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import img from '../../assets/digital-library.png'
 import { useFormik } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion';
-
-
 import * as Yup from 'yup'
+import { userContext } from '../../Context/userContext'
 
 function Login() {
+
+    let {setLogin}= useContext(userContext)
 
     let navigate= useNavigate()
     let [userData, getUserData]= useState([])
@@ -20,6 +21,9 @@ function Login() {
         try {
             const response = await axios.post('https://shelfshare-v2.vercel.app/api/auth/login', formData);
             console.log(response.data);
+
+            setLogin(response.data.token)
+            localStorage.setItem('userToken', response.data.token) 
 
             setIsFlipping(true); 
 
