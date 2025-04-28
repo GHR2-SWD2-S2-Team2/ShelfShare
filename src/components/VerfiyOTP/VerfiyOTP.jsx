@@ -1,35 +1,30 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
-import img from '../../assets/digital-library.png'
+import React, { useState } from 'react'
+import img from '../../assets/password-access.png'
 import { useFormik } from 'formik'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate , useLocation, NavLink, Link } from 'react-router-dom'
 import { motion } from 'framer-motion';
 import * as Yup from 'yup'
-import { userContext } from '../../Context/userContext'
 
-function Login() {
 
-    let {setLogin}= useContext(userContext)
+function VerifyOtp() {
 
     let navigate= useNavigate()
-    let [userData, getUserData]= useState([])
+    const location= useLocation()
+    const initialEmail= location.state?.email||''
     let [isFlipping, setIsFlipping] = useState(false);  
 
-
-    async function handleLogin(formData) {
-        console.log(formData)
+    async function handleVerify(formData) {
+        console.log("Verifying OTP for:", formData.email)
         try {
-            const response = await axios.post('https://shelfshare-v2.vercel.app/api/auth/login', formData);
+            const response = await axios.post('https://shelfshare-v2.vercel.app/api/auth/verify-otp', formData);
             console.log(response.data);
-
-            setLogin(response.data.token)
-            localStorage.setItem('userToken', response.data.token) 
 
             setIsFlipping(true); 
 
             setTimeout(() => {
-                navigate('/');
-            }, 500); 
+                navigate('/login');
+            }, 800); 
 
         } catch (err) {
             console.error("Registration failed:", err);
@@ -37,24 +32,23 @@ function Login() {
     }
 
     let validationSchema = Yup.object({
-        email:Yup.string().required('email is required').email('invalid email'),
-        password:Yup.string().required('password is required').matches(/^.{6,}$/)
+        email:Yup.string().required('Email is required').email('invalid email format'),
+        otp:Yup.string().required('OTP is required').matches(/^[0-9]{6}$/)
     })
 
     let formik= useFormik({
         initialValues:{
-            email:'',
-            password:''
+            email:initialEmail,
+            otp:''
         },
-        onSubmit:handleLogin,
+        enableReinitialize:true,
+        onSubmit:handleVerify,
         validationSchema:validationSchema
     })
 
 
-    useEffect(()=>{
-        handleLogin()
-    },[])
     return <>
+
                 <motion.div
                 className='mx-auto flex flex-wrap flex-col justify-center items-center content-center h-screen w-[100%]'
                 initial={{ rotateY: 0 }}
@@ -72,34 +66,40 @@ function Login() {
         >
             <div className="title text-center flex flex-col justify-center items-center">
                 <span className='text-center'><img src={img} alt="BookImg" width={'80px'}/></span>
-                <h1>Access Your Shelf</h1>
+                <h1>Shelf Your Dreams</h1>
             </div>
             <div className='flex flex-wrap flex-col w-[50%] '>
                 <form onSubmit={formik.handleSubmit}>
                     <div className='flex flex-col'>
                         <div>
-                            <input type="email" placeholder='user@gmail.com' name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} className='border-1 p-2 my-2 w-full rounded-2xl hover:cursor-pointer hover:shadow-sm hover:shadow-stone-600 transition-all duration-300 ease'/>
+                            <input type="email" placeholder='user@gmail.com' name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} className='border-1 p-2 my-2 w-full rounded-2xl hover:cursor-pointer hover:shadow-sm hover:shadow-stone-600 transition-all duration-300 ease' readOnly/>
                             {formik.touched.email && formik.errors.email? (<div className='text-red-800'>{formik.errors.email}</div>):null}
                         </div>
                         <div>
-                            <input type="password" placeholder='Password' name='password' value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} className='border-1 p-2 my-2 w-full rounded-2xl hover:cursor-pointer hover:shadow-sm hover:shadow-stone-600 transition-all duration-300 ease'/>
-                            {formik.touched.password && formik.errors.password? (<div className='text-red-800'>{formik.errors.password}</div>):null}
+                            <input type="tel" placeholder='otp' name='otp' value={formik.values.otp} onChange={formik.handleChange} onBlur={formik.handleBlur} className='border-1 p-2 my-2 w-full rounded-2xl hover:cursor-pointer hover:shadow-sm hover:shadow-stone-600 transition-all duration-300 ease'/>
+                            {formik.touched.otp && formik.errors.otp? (<div className='text-red-800'>{formik.errors.otp}</div>):null}
                         </div>
-                       
+                        <div>
+                            <p>
+                                <Link to={'/resendotp'} className=' text-decoration-none text-amber-300 '>
+                                    <span className='text-gray-600 hover:underline hover:cursor-pointer hover:text-blue-500'>Resend OTP</span>
+                                </Link>
+                            </p>
+                        </div>
+                        
                         <div className='mx-auto'>
-                            <button type='submit' className='bg-yellow-800 text-white rounded py-2 px-3 hover:shadow-sm hover:shadow-stone-600'>Login</button>
+                            <button type='submit' className='bg-emerald-400 text-white rounded py-2 px-3 hover:shadow-sm hover:shadow-stone-600'>Send</button>
                         </div>
+                        
                     </div>
                     
-                    <div className='text-center'>
-                            <p>Don't have an account? <NavLink to={'/register'}>Signup</NavLink></p>
-                    </div>
+
                 </form>
             </div>
-        </div>
+            </div>
         </div>
         </motion.div>
     </>
 }
 
-export default Login
+export default VerifyOtp
