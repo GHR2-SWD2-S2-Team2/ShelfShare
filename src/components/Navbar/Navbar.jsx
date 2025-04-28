@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import {userContext} from '../Context/userContext'
+import {userContext} from '../../Context/userContext'
 
 function Navbar() {
 
