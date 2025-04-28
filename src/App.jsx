@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile'
 import NotFound from './components/NotFound/NotFound'
 import VerfiyOtp from './components/VerfiyOTP/VerfiyOTP'
 import ResendOtp from './components/ResendOTP/ResendOTP'
+import UserContextProvider from './Context/userContext'
 
 function App() {
   
@@ -27,7 +28,10 @@ function App() {
   ])
     
   return <>
-    <RouterProvider router={routers}></RouterProvider>
+    <UserContextProvider>
+      <RouterProvider router={routers}></RouterProvider>
+    </UserContextProvider>
+      
   </>
 }
 
