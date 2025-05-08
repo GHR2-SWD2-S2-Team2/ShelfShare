@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { userContext } from "../../Context/userContext";
-
 function Navbar() {
   let { isLogin } = useContext(userContext);
   return (
