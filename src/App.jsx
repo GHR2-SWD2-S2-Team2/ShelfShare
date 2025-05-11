@@ -12,7 +12,14 @@ import UserContextProvider from "./Context/userContext";
 import BooksLayout from "./components/Books";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+
 import BooksList from "./components/Books/BooksList";
+import { CartProvider } from "./Context/cartContext";
+import Cart from "./components/Cart/Cart";
+import Success from "./components/Success/Success";
+import Cancel from "./components/Cancel/Cancel";
+import Favorite from "./components/Favorite/Favorite";
+
 
 function App() {
   let routers = createBrowserRouter([
@@ -22,6 +29,12 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "profile", element: <Profile /> },
+
+        { path: "profile", element: <Profile /> },
+        { path: "Cart", element: <Cart /> },
+        { path: "Favorite", element: <Favorite /> },
+        { path: "Success", element: <Success /> },
+        { path: "Cancel", element: <Cancel /> },
         {
           path: "books",
           element: <BooksLayout />,
@@ -45,9 +58,11 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <UserContextProvider>
+      <CartProvider>
+      <UserContextProvider>
           <RouterProvider router={routers}></RouterProvider>
         </UserContextProvider>
+      </CartProvider>
       </Provider>
     </>
   );

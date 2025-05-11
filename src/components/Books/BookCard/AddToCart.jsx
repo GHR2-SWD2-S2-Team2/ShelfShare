@@ -1,9 +1,13 @@
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import React, { useContext } from "react";
+import { CartContext } from "../../../Context/cartContext";
 const AddToCart = ({ book }) => {
+
+    let { addItem } = useContext(CartContext);
   const handleAddToCart = () => {
-    // TODO:
+    addItem(book, 1);
   };
 
   return (
