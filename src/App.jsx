@@ -13,7 +13,6 @@ import Books from "./components/Books";
 import BooksLayout from "./components/Books";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import CartContextProvider from "./Context/cartContext";
 
 function App() {
   let routers = createBrowserRouter([
@@ -48,9 +47,7 @@ function App() {
     <>
       <Provider store={store}>
         <UserContextProvider>
-        <CartContextProvider>
-          <RouterProvider router={routers} />
-        </CartContextProvider>
+          <RouterProvider router={routers}></RouterProvider>
         </UserContextProvider>
       </Provider>
     </>
