@@ -1,0 +1,25 @@
+.message{
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 20px;
+    background-color: #894b005d;
+    padding: 10px;
+    border: #894b00 solid 1px;
+    border-radius: 5px;
+}
+.but{
+    margin-top: 20px;
+    background-color: #894b00ca;
+    color: white;
+    padding: 10px 60px;
+    border-radius: 10px;
+    font-size: 17px;
+}
+.but:hover{
+    background-color: #894b00;
+    cursor: pointer;
+}
+
+h1{
+    font-family: 'Open Sans', sans-serif;
+}
