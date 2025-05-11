@@ -9,10 +9,10 @@ import NotFound from "./components/NotFound/NotFound";
 import VerfiyOtp from "./components/VerfiyOTP/VerfiyOTP";
 import ResendOtp from "./components/ResendOTP/ResendOTP";
 import UserContextProvider from "./Context/userContext";
-import Books from "./components/Books";
 import BooksLayout from "./components/Books";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import BooksList from "./components/Books/BooksList";
 
 function App() {
   let routers = createBrowserRouter([
@@ -22,16 +22,15 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "profile", element: <Profile /> },
-        { path: "profile", element: <Profile /> },
         {
           path: "books",
           element: <BooksLayout />,
           children: [
-            { index: true, element: <Books /> },
-            { path: "English", element: <Books /> },
-            { path: "Arabic", element: <Books /> },
-            { path: "Arabic-Kids", element: <Books /> },
-            { path: "English-Kids", element: <Books /> },
+            { index: true, element: <BooksList /> },
+            {
+              path: ":language",
+              element: <BooksList />,
+            }
           ],
         },
         { path: "*", element: <NotFound /> },
