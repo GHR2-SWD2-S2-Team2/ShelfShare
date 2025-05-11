@@ -15,7 +15,7 @@ const AddToCart = ({ book }) => {
       onClick={handleAddToCart}
       animate={{ opacity: 1 }}
       whileHover={{ scale: 1.1 }}
-      className="bg-yellow-800 w-fit h-fit p-3 rounded-full"
+      className="bg-yellow-800 p-2 flex items-center justify-center rounded-full"
     >
       <AddShoppingCartIcon />
     </motion.div>

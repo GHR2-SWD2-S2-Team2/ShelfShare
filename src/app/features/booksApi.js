@@ -53,7 +53,11 @@ export const booksApi = createApi({
         },
       }),
     }),
-
+    getCategories: builder.query({
+      query: () => ({
+        url: `book/categories`,
+      }),
+    }),
     reviewBook: builder.mutation({
       query: ({ bookId, rate, token }) => ({
         url: `book/review/${bookId}`,
@@ -73,4 +77,5 @@ export const {
   useDeleteBookMutation,
   useAddBookMutation,
   useReviewBookMutation,
+  useGetCategoriesQuery,
 } = booksApi;
