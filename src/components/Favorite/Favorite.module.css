@@ -1,0 +1,38 @@
+.message{
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 20px;
+    background-color: #894b005d;
+    padding: 10px;
+    border: #894b00 solid 1px;
+    border-radius: 5px;
+
+}
+h1{
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.but{
+    margin-top: 20px;
+    background-color: #894b00ca;
+    color: white;
+    padding: 10px 60px;
+    border-radius: 10px;
+    font-size: 17px;
+}
+.but:hover{
+    background-color: #894b00;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+    .cart {
+      display: block !important;
+      padding-left:5rem !important;
+      text-align: center;
+    }
+  }
+  

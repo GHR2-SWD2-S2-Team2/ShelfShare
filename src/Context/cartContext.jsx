@@ -1,68 +1,51 @@
-import axios from "axios";
-import { createContext} from "react";
+import React, { createContext, useState, useContext } from "react";
 
-let headers = {
-    token : localStorage.getItem('userToken')
-}
-
-
+// Create context
 export const CartContext = createContext();
 
+// Provider
+export function CartProvider({ children }) {
+  const [items, setItems] = useState([]);
 
-export default function CartContextProvider(props) {
-    function addProductToCart(productId) {
-        return axios.post(`https://ecommerce.routemisr.com/api/v1/cart`, 
-            { productId : productId }, 
-            { headers : headers})
-            .then((response) => response)
-            .catch((error) => (error)
-            )
-    }
-    function getProductToCart() {
-        return axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, { headers : headers})
-            .then((response) => response)
-            .catch((error) => (error)
-            )
-    }
-    function deleteProductFromCart(productId) {
-        return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, { headers : headers})
-            .then((response) => response)
-            .catch((error) => (error)
-            )
-    }
-    function updateProductInCart(productId, count) {
-        return axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, { count : count }, { headers : headers})
-            .then((response) => response)
-            .catch((error) => (error)
-            )
-    }
-    return <CartContext.Provider value={{addProductToCart , getProductToCart , deleteProductFromCart , updateProductInCart}}>
-    { props.children }
+  const addItem = (book, qty = 1) => {
+    console.log("book", book);
+    setItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.book._id === book._id);
 
-</CartContext.Provider>
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.book._id === book._id
+            ? { ...item, qty: item.qty + qty }
+            : item
+        );
+      } else {
+        return [...prevItems, { book, qty }];
+      }
+    });
+  };
 
+  const removeItem = (bookId) => {
+    setItems((prevItems) =>
+      prevItems.filter((item) => item.book._id !== bookId)
+    );
+  };
+
+  const updateItemQty = (bookId, qty) => {
+    if (qty < 1) {
+      return;
+    }
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.book._id === bookId ? { ...item, qty } : item
+      )
+    );
+  };
+
+  return (
+    <CartContext.Provider
+      value={{ items, addItem, removeItem, updateItemQty }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 }
-
-
-
-
-
-
-
-
-// import React, { createContext, useState } from 'react';
-
-// export const CartContext = createContext();
-
-// export default function CartContextProvider({ children }) {
-//   const [cartCount, setCartCount] = useState(0);
-
-//   const addToCart = () => setCartCount(prev => prev + 1);
-//   const removeFromCart = () => setCartCount(prev => (prev > 0 ? prev - 1 : 0));
-
-//   return (
-//     <CartContext.Provider value={{ cartCount, addToCart, removeFromCart }}>
-//       {children}
-//     </CartContext.Provider>
-//   );
-// } 
