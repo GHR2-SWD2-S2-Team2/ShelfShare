@@ -2,12 +2,25 @@ import { Heart } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useState } from "react";
+import axios from "axios";
 
-const AddToFavorites = ({ bookId, isFavorited }) => {
+const AddToFavorites = ({ bookId , isFavorited }) => {
   const [isFav, setIsFav] = useState(isFavorited);
 
   const handleToggle = async () => {
-    // TODO:
+    axios
+      .post("https://shelfshare-v2.vercel.app/api/favorite/toggle", { bookId } , {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setIsFav(!isFav);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

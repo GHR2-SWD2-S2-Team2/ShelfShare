@@ -1,0 +1,253 @@
+ .message{
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 20px;
+    background-color: #894b005d;
+    padding: 10px;
+    border: #894b00 solid 1px;
+    border-radius: 5px;
+}
+.but{
+    margin-top: 20px;
+    background-color: #894b00ca;
+    color: white;
+    padding: 10px 60px;
+    border-radius: 10px;
+    font-size: 17px;
+}
+.but:hover{
+    background-color: #894b00;
+    cursor: pointer;
+}
+
+h1{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.cart {
+    background-color: #fff;
+    min-height: 90vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .items {
+    width: 100%;
+  }
+  
+  .item {
+    background-color: rgba(101, 67, 33, 0.05); 
+    border: 1px solid #aaaaaa59;
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+  
+  .item:hover {
+    background-color: rgba(101, 67, 33, 0.15);
+  }
+  
+  .image {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
+  .title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    flex: 1;
+  }
+  
+  .number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 30px;
+    border: 1px solid #cccccc67;
+    padding: 0.5rem 1rem;
+    gap: 0.7rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .number button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #653b1e;
+    transition: color 0.3s ease;
+  }
+  
+  .number button:hover {
+    color: #8b5e3c;
+  }
+  
+  .qty {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+  
+  .price {
+    color: #333;
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-right: 1rem;
+  }
+
+    .price span {
+        font-size: 1.2rem;
+        color: #333;
+        font-weight: 200;
+    }
+  
+  .deleteIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    color: #894b00;
+    cursor: pointer;
+    display: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+  
+  .item:hover .deleteIcon {
+    display: block;
+    opacity: 1;
+  }
+  
+  .deleteIcon:hover {
+    transform: scale(1.2)
+  }
+  
+  .totalSection {
+    padding: 1rem;
+    width: 21%;
+  }
+  
+  .totalTitle {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #333;
+    
+  }
+  
+  .totalPrice {
+    font-size: 1.3rem;
+    color: #5a3920;
+    font-weight: 400;
+  }
+
+  .totalTitle span {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 400;
+  }
+  
+  .checkoutBtn {
+    background-color: #8B4513;
+    color: #fff;
+    padding: 0.7rem 4rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    width: 100%;
+  }
+  
+  .checkoutBtn:hover {
+    background-color: #aa5515; 
+  }
+  
+  .totalSection .backLink {
+    text-decoration: none;
+    color: #8B4513;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .backLink:hover {
+    color: #451bae;
+  }
+
+
+/* === Responsive Media Queries === */
+
+/* على الشاشات المتوسطة (تابلت) */
+@media (max-width: 992px) {
+    .cart {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+  
+    .totalSection {
+      width: 100% !important;
+      margin-top: 2rem;
+      text-align: center;
+    }
+  
+    .checkoutBtn {
+      width: 70%;
+    }
+  
+    .backLink {
+      margin-top: 1rem;
+      display: inline-block;
+    }
+  }
+  
+  /* على الشاشات الصغيرة (موبايل) */
+  @media (max-width: 768px) {
+    .item {
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 1rem;
+      text-align: center;
+    }
+  
+    .image {
+      width: 100px !important;
+    }
+  
+    .title {
+      font-size: 1rem !important;
+      width: 100%;
+    }
+  
+    .number {
+      flex-direction: row;
+      justify-content: center;
+    }
+  
+    .price {
+      font-size: 1rem !important;
+    }
+  
+    .totalSection {
+      width: 100% !important;
+      padding: 1rem 0;
+    }
+  
+    .checkoutBtn {
+      width: 90% !important;
+    }
+  }
+  

@@ -9,10 +9,17 @@ import NotFound from "./components/NotFound/NotFound";
 import VerfiyOtp from "./components/VerfiyOTP/VerfiyOTP";
 import ResendOtp from "./components/ResendOTP/ResendOTP";
 import UserContextProvider from "./Context/userContext";
-import Books from "./components/Books";
+import BooksLayout from "./components/Books";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import CartContextProvider from "./Context/cartContext";
+
+import BooksList from "./components/Books/BooksList";
+import { CartProvider } from "./Context/cartContext";
+import Cart from "./components/Cart/Cart";
+import Success from "./components/Success/Success";
+import Cancel from "./components/Cancel/Cancel";
+import Favorite from "./components/Favorite/Favorite";
+
 
 function App() {
   let routers = createBrowserRouter([
@@ -22,15 +29,19 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "profile", element: <Profile /> },
+        { path: "Cart", element: <Cart /> },
+        { path: "Favorite", element: <Favorite /> },
+        { path: "Success", element: <Success /> },
+        { path: "Cancel", element: <Cancel /> },
         {
           path: "books",
-          element: <Books />,
+          element: <BooksLayout />,
           children: [
-            { index: true, element: <Books /> },
-            { path: "English", element: <Books category="English" /> },
-            { path: "Arabic", element: <Books category="Arabic" /> },
-            { path: "Arabic-Kids", element: <Books category="Arabic-Kids" /> },
-            { path: "English-Kids", element: <Books category="English-Kids" /> },
+            { index: true, element: <BooksList /> },
+            {
+              path: ":language",
+              element: <BooksList />,
+            }
           ],
         },
         { path: "*", element: <NotFound /> },
@@ -45,11 +56,11 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <UserContextProvider>
-          <CartContextProvider>
-            <RouterProvider router={routers} />
-          </CartContextProvider>
+      <CartProvider>
+      <UserContextProvider>
+          <RouterProvider router={routers}></RouterProvider>
         </UserContextProvider>
+      </CartProvider>
       </Provider>
     </>
   );
