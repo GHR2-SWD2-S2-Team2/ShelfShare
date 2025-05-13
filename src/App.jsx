@@ -10,7 +10,6 @@ import VerfiyOtp from "./components/VerfiyOTP/VerfiyOTP";
 import ResendOtp from "./components/ResendOTP/ResendOTP";
 import UserContextProvider from "./Context/userContext";
 import Books from "./components/Books";
-import BooksLayout from "./components/Books";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import CartContextProvider from "./Context/cartContext";
@@ -23,16 +22,15 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "profile", element: <Profile /> },
-        { path: "profile", element: <Profile /> },
         {
           path: "books",
-          element: <BooksLayout />,
+          element: <Books />,
           children: [
             { index: true, element: <Books /> },
-            { path: "English", element: <Books /> },
-            { path: "Arabic", element: <Books /> },
-            { path: "Arabic-Kids", element: <Books /> },
-            { path: "English-Kids", element: <Books /> },
+            { path: "English", element: <Books category="English" /> },
+            { path: "Arabic", element: <Books category="Arabic" /> },
+            { path: "Arabic-Kids", element: <Books category="Arabic-Kids" /> },
+            { path: "English-Kids", element: <Books category="English-Kids" /> },
           ],
         },
         { path: "*", element: <NotFound /> },
@@ -48,9 +46,9 @@ function App() {
     <>
       <Provider store={store}>
         <UserContextProvider>
-        <CartContextProvider>
-          <RouterProvider router={routers} />
-        </CartContextProvider>
+          <CartContextProvider>
+            <RouterProvider router={routers} />
+          </CartContextProvider>
         </UserContextProvider>
       </Provider>
     </>

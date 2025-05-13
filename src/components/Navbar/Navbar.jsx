@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext , useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/cartContext';
 import logo from '../../assets/logo.png';
@@ -6,6 +6,7 @@ import './BtnStyle.css';
 
 export default function Navbar() {
   const { item } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -15,19 +16,20 @@ export default function Navbar() {
             <img src={logo} alt="Logo" style={{ height: '40px' }} />
           </Link>
           <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarContent"
-            aria-controls="navbarContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+           className="navbar-toggler"
+           type="button"
+           data-bs-toggle="collapse"
+           data-bs-target="#navbarContent"
+           aria-controls="navbarContent"
+           aria-expanded="false"
+           aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+         <span className="navbar-toggler-icon" onClick={() => setIsOpen((prev) => !prev)}></span>
+         </button>
 
-          <div className="collapse navbar-collapse" id="navbarContent">
-            <div className="left-section d-flex gap-3 me-auto mt-3 mt-lg-0">
+
+          <div className={`w-full lg:flex lg:items-center ${isOpen ? "block" : "hidden"}`}>
+            <div className="left-section d-flex flex-row gap-3 me-auto mt-3 mt-lg-0">
               <button className="cool-button">
                 <i className="bi bi-calendar-event"></i> Events
               </button>
