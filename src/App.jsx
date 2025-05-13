@@ -12,7 +12,6 @@ import UserContextProvider from "./Context/userContext";
 import BooksLayout from "./components/Books";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-
 import BooksList from "./components/Books/BooksList";
 import { CartProvider } from "./Context/cartContext";
 import Cart from "./components/Cart/Cart";
