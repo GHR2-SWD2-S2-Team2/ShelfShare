@@ -29,8 +29,6 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "profile", element: <Profile /> },
-
-        { path: "profile", element: <Profile /> },
         { path: "Cart", element: <Cart /> },
         { path: "Favorite", element: <Favorite /> },
         { path: "Success", element: <Success /> },
