@@ -84,11 +84,11 @@ export default function Home() {
 <div className=" mt-4 pb-5 container border-t-5 border-b-4  border-double"style={{ borderColor: 'rgb(137, 75, 0)' }}>
      <div className='pt-2'><h2>Recently Added
 </h2></div>
-     <div className=" grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 pt-5 md:pt-0  " > 
+     <div className=" grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 2xl:grid-cols-5 gap-4 pt-5 md:pt-0  " > 
          {Newbooks.map((book) => (
            <BookCard book={book} key={book._id} />)
-
-      )}</div>
+      )}
+      </div>
    </div>
 
  <div className=" mt-4 pb-5 container border-t-5 border-b-4  border-double"style={{ borderColor: 'rgb(137, 75, 0)' }}>
