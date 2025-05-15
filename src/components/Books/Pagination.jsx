@@ -8,8 +8,6 @@ const Pages = () => {
     totalPages,
     filters: { page },
   } = useSelector((state) => state.booksFilters);
-  console.log("totalPages", totalPages);
-  console.log("page", page);
   const dispatch = useDispatch();
   return (
     <Stack spacing={2} className="mt-5 self-center">
