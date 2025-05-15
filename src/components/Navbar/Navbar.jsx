@@ -30,12 +30,12 @@ export default function Navbar() {
 
           <div className={`w-full lg:flex lg:items-center ${isOpen ? "block" : "hidden"}`}>
             <div className="left-section d-flex flex-row gap-3 me-auto mt-3 mt-lg-0">
-              <button className="cool-button">
+              <Link to="/events" className="text-decoration-none cool-button">
                 <i className="bi bi-calendar-event"></i> Events
-              </button>
-              <button className="cool-button">
+              </Link>
+              <Link to="/about" className="text-decoration-none cool-button">
                 <i className="bi bi-book"></i> About
-              </button>
+              </Link>
             </div>
 
             <div className="d-flex flex-column align-items-center flex-grow-1 search-bar my-3 my-lg-0">

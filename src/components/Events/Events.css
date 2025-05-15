@@ -1,0 +1,164 @@
+.events-container {
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.events-hero {
+  background: linear-gradient(135deg, #8B4513, #5a3e2b);
+  padding: 4rem 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.events-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.events-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.hero-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.events-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.events-filter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #8B4513;
+  background: transparent;
+  color: #8B4513;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: #8B4513;
+  color: white;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.event-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.event-category {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #8B4513;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.event-card h3 {
+  color: #5a3e2b;
+  font-size: 1.3rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.event-details {
+  margin: 1rem 0;
+}
+
+.event-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.event-info i {
+  color: #8B4513;
+}
+
+.event-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #8B4513;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #5a3e2b;
+}
+
+@media (max-width: 768px) {
+  .events-hero {
+    padding: 3rem 1rem;
+  }
+
+  .events-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .events-content {
+    padding: 1rem;
+  }
+
+  .events-filter {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+} 

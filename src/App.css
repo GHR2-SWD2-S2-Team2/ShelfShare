@@ -1,0 +1,69 @@
+/* About Page Styles */
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.about-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.about-content h2 {
+  color: #444;
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+}
+
+.about-content p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.mission-section,
+.features-section,
+.contact-section {
+  margin: 2rem 0;
+}
+
+.features-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.features-section li {
+  padding: 0.5rem 0;
+  color: #666;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.features-section li:before {
+  content: "•";
+  color: #4a90e2;
+  position: absolute;
+  left: 0;
+}
+
+.contact-section a {
+  color: #4a90e2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-section a:hover {
+  color: #357abd;
+  text-decoration: underline;
+}
