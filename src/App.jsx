@@ -18,6 +18,8 @@ import Cart from "./components/Cart/Cart";
 import Success from "./components/Success/Success";
 import Cancel from "./components/Cancel/Cancel";
 import Favorite from "./components/Favorite/Favorite";
+import About from "./components/About/About";
+import Events from "./components/Events/Events";
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
         { path: "Favorite", element: <Favorite /> },
         { path: "Success", element: <Success /> },
         { path: "Cancel", element: <Cancel /> },
+        { path: "about", element: <About /> },
+        { path: "events", element: <Events /> },
         {
           path: "books",
           element: <BooksLayout />,

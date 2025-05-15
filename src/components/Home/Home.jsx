@@ -103,7 +103,7 @@ export default function Home() {
 <div className="container my-5">
   <div className="row align-items-center">
 
-    <div className="col-12 col-md-8 mb-3">
+    <div className="col-12 col-md-8 mb-3 " id='about'>
       <div className="card-body">
         <h5 className="card-title mb-3 fs-2" style={{ color: 'rgb(137, 75, 0)' }}>
           About Shelf Share
