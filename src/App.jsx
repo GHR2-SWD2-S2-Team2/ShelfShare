@@ -14,13 +14,14 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 import BooksList from "./components/Books/BooksList";
 import { CartProvider } from "./Context/cartContext";
+import { FavoriteProvider } from "./Context/favoriteContext";
 import Cart from "./components/Cart/Cart";
 import Success from "./components/Success/Success";
 import Cancel from "./components/Cancel/Cancel";
 import Favorite from "./components/Favorite/Favorite";
 import About from "./components/About/About";
 import Events from "./components/Events/Events";
-
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   let routers = createBrowserRouter([
@@ -59,11 +60,20 @@ function App() {
   return (
     <>
       <Provider store={store}>
-      <CartProvider>
-      <UserContextProvider>
-          <RouterProvider router={routers}></RouterProvider>
-        </UserContextProvider>
-      </CartProvider>
+        <CartProvider>
+          <FavoriteProvider>
+            <UserContextProvider>
+              <RouterProvider router={routers} />
+              <Toaster 
+                position="top-center"
+                reverseOrder={false}
+                containerStyle={{
+                  top: 80
+                }}
+              />
+            </UserContextProvider>
+          </FavoriteProvider>
+        </CartProvider>
       </Provider>
     </>
   );

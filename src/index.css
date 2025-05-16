@@ -21,3 +21,41 @@ html, body, #root {
   .main-content {
     flex: 1;
   }
+
+@keyframes enter {
+  0% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes leave {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+}
+
+.animate-enter {
+  animation: enter 0.35s ease-out;
+}
+
+.animate-leave {
+  animation: leave 0.35s ease-in forwards;
+}
+
+.text-brown {
+  color: #8B4513;
+}
+
+.hover\:text-brown-dark:hover {
+  color: #654321;
+}
