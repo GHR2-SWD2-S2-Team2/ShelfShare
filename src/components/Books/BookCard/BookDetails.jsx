@@ -2,7 +2,7 @@ import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import BookRate from "./BookRate";
-import AddToFavorites from "./AddToFavorites";
+import AddToFavorite from "./AddToFavorite";
 import AddToCart from "./AddToCart";
 
 const childVariants = {
@@ -12,18 +12,18 @@ const childVariants = {
 
 const BookDetails = ({ book }) => {
   return (
-    <>
+    <div className="h-full flex flex-col">
       <motion.div
         variants={childVariants}
-        className="flex items-start justify-between"
+        className="flex items-start justify-between mb-auto"
       >
         <BookRate rate={book.rate} />
-        <AddToFavorites bookId={book._id} isFavorited={book.isFavorited} />
+        <AddToFavorite book={book} />
       </motion.div>
 
       <motion.div
         variants={childVariants}
-        className="flex justify-between items-center"
+        className="flex justify-between items-center mt-auto"
       >
         <div>
           <motion.h6 variants={childVariants} className="font-bold">
@@ -39,7 +39,7 @@ const BookDetails = ({ book }) => {
         </div>
         {book.qty > 0 && <AddToCart book={book} />}
       </motion.div>
-    </>
+    </div>
   );
 };
 

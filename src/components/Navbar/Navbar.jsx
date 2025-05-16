@@ -1,11 +1,13 @@
-import React, { useContext , useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from "../../Context/cartContext";
+import { FavoriteContext } from "../../Context/favoriteContext";
 import logo from '../../assets/logo.png';
 import './BtnStyle.css';
 
 export default function Navbar() {
-  const { item } = useContext(CartContext);
+  const { cartCount } = useContext(CartContext);
+  const { favoritesCount } = useContext(FavoriteContext);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,17 +18,16 @@ export default function Navbar() {
             <img src={logo} alt="Logo" style={{ height: '40px' }} />
           </Link>
           <button
-           className="navbar-toggler"
-           type="button"
-           data-bs-toggle="collapse"
-           data-bs-target="#navbarContent"
-           aria-controls="navbarContent"
-           aria-expanded="false"
-           aria-label="Toggle navigation"
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-         <span className="navbar-toggler-icon" onClick={() => setIsOpen((prev) => !prev)}></span>
-         </button>
-
+            <span className="navbar-toggler-icon" onClick={() => setIsOpen((prev) => !prev)}></span>
+          </button>
 
           <div className={`w-full lg:flex lg:items-center ${isOpen ? "block" : "hidden"}`}>
             <div className="left-section d-flex flex-row gap-3 me-auto mt-3 mt-lg-0">
@@ -55,18 +56,23 @@ export default function Navbar() {
 
               <ul className="list-unstyled d-flex gap-4 align-items-center m-0">
                 <li className="position-relative">
-                  <Link to="/Cart" className="text-decoration-none  text-center">
-                    <i className="bi bi-cart n-icon fs-4"></i>
+                  <Link to="/Cart" className="text-decoration-none text-center d-block">
+                    <i className="bi bi-cart n-icon fs-5"></i>
+                    {cartCount > 0 && (
+                      <span className="badge rounded-pill bg-brown position-absolute">
+                        {cartCount}
+                      </span>
+                    )}
                   </Link>
-                  {item && item.length > 0 && (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-brown">
-                      {item.length}
-                    </span>
-                  )}
                 </li>
-                <li>
-                  <Link to="/Favorite" className=" text-decoration-none text-center">
+                <li className="position-relative">
+                  <Link to="/Favorite" className="text-decoration-none text-center d-block">
                     <i className="fa-regular n-icon fa-heart fs-5"></i>
+                    {favoritesCount > 0 && (
+                      <span className="badge rounded-pill bg-brown position-absolute">
+                        {favoritesCount}
+                      </span>
+                    )}
                   </Link>
                 </li>
               </ul>
@@ -76,10 +82,10 @@ export default function Navbar() {
       </nav>
 
       <div className="main-nav d-sm-flex d-lg-flex justify-content-center align-items-center flex-row flex-lg-row container-fluid">
-      <ul className=" gap-4 d-flex flex-row flex-nowrap py-4 px-4 mb-2">
+        <ul className="gap-4 d-flex flex-row flex-nowrap py-4 px-4 mb-2">
           <li className="active"><Link to="/">Home</Link></li>
-          <li className=" not_active" ><Link to="/books">Books </Link></li>
-          <li className=" not_active" ><Link to="/profile">Profile</Link></li>
+          <li className="not_active"><Link to="/books">Books </Link></li>
+          <li className="not_active"><Link to="/profile">Profile</Link></li>
         </ul>
       </div>
     </>

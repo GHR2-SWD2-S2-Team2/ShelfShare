@@ -1,0 +1,46 @@
+.favorite-btn {
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorite-btn:hover {
+  background-color: rgba(139, 69, 19, 0.1);
+}
+
+.favorite-btn i {
+  color: #8B4513;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn i.fa-solid {
+  color: #8B4513;
+}
+
+.text-brown {
+  color: #8B4513;
+}
+
+.card-toast-notification {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  color: #8B4513;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.card-toast-notification i {
+  font-size: 16px;
+} 

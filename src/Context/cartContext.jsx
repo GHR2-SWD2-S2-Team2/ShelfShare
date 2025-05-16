@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 // Create context
 export const CartContext = createContext();
@@ -7,19 +7,29 @@ export const CartContext = createContext();
 export function CartProvider({ children }) {
   const [items, setItems] = useState([]);
 
+  // Debug log whenever items change
+  useEffect(() => {
+    console.log('Cart Items Updated:', items);
+  }, [items]);
+
   const addItem = (book, qty = 1) => {
-    console.log("book", book);
+    if (!book) return;
+    
     setItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.book._id === book._id);
 
       if (existingItem) {
-        return prevItems.map((item) =>
+        const updatedItems = prevItems.map((item) =>
           item.book._id === book._id
             ? { ...item, qty: item.qty + qty }
             : item
         );
+        console.log('Updated Items:', updatedItems);
+        return updatedItems;
       } else {
-        return [...prevItems, { book, qty }];
+        const newItems = [...prevItems, { book, qty }];
+        console.log('New Items:', newItems);
+        return newItems;
       }
     });
   };
@@ -32,6 +42,7 @@ export function CartProvider({ children }) {
 
   const updateItemQty = (bookId, qty) => {
     if (qty < 1) {
+      removeItem(bookId);
       return;
     }
     setItems((prevItems) =>
@@ -41,9 +52,20 @@ export function CartProvider({ children }) {
     );
   };
 
+  const getCartCount = () => {
+    return items.reduce((total, item) => total + (item.qty || 1), 0);
+  };
+
   return (
     <CartContext.Provider
-      value={{ items, addItem, removeItem, updateItemQty }}
+      value={{ 
+        items, 
+        addItem, 
+        removeItem, 
+        updateItemQty,
+        getCartCount,
+        cartCount: getCartCount()
+      }}
     >
       {children}
     </CartContext.Provider>
